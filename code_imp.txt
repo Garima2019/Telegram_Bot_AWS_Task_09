@@ -1,0 +1,103 @@
+cd D:\Hochschule\Cloud_Solutions\Telegram_Bot_AWS_Task_09
+
+terraform init
+terraform plan
+terraform apply -auto-approve
+
+api_endpoint = "https://akwqvkbavc.execute-api.us-east-1.amazonaws.com/prod/webhook"
+api_gateway_url = "https://akwqvkbavc.execute-api.us-east-1.amazonaws.com/prod"
+cloudwatch_log_group_api_gateway = "/aws/apigateway/telegram-http-api-v2"
+cloudwatch_log_group_lambda = "/aws/lambda/telegram-bot-lambda-v2"
+dynamodb_table_name = "telegram-bot-data-prod"
+lambda_function_arn = "arn:aws:lambda:us-east-1:878796852077:function:telegram-bot-lambda-v2"
+lambda_function_name = "telegram-bot-lambda-v2"
+region = "us-east-1"
+s3_bucket_name = "telegram-bot-files-v2"
+sns_topic_arn = "arn:aws:sns:us-east-1:878796852077:telegram-bot-alerts-v2"
+webhook_setup_command = "curl -X POST https://api.telegram.org/botYOUR_BOT_TOKEN/setWebhook -H 'Content-Type: application/json' 
+-d '{\"url\": \"https://akwqvkbavc.execute-api.us-east-1.amazonaws.com/prod/webhook\"}'"
+
+
+curl "https://api.telegram.org/bot8238388865:AAHT-_mUbtwGB2OqPTgTTjoT7OBLW-lTxPI/getWebhookInfo"
+
+
+1. Confirm the actual webhook URL
+terraform output webhook_url
+
+2. Set the Telegram webhook to the new URL
+$BotToken   = "8238388865:AAHT-_mUbtwGB2OqPTgTTjoT7OBLW-lTxPI"            # e.g. 123456789:ABCDEF...
+$WebhookUrl = "https://akwqvkbavc.execute-api.us-east-1.amazonaws.com/prod/webhook"        # from terraform output
+$uri = "https://api.telegram.org/bot$BotToken/setWebhook?url=$([uri]::EscapeDataString($WebhookUrl))"
+Invoke-WebRequest -Uri $uri -Method Get | Select-Object -ExpandProperty Content
+
+groq_api_key       = "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"
+
+'Write a poem about coding'
+
+
+bash:
+cd D:/Hochschule/Cloud_Solutions/Telegram_Bot_AWS_Task_09
+
+
+aws lambda get-function-configuration \
+  --function-name telegram-bot-lambda-v2 \
+  --query 'Environment.Variables'
+  
+  
+#aws lambda update-function-configuration \
+#     --function-name telegram-bot-lambda-v2 \
+#     --environment Variables={GROQ_API_KEY=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}
+	 
+HF_API_KEY: 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
+
+https://console.groq.com/keys
+GROQ_API_KEY: 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
+
+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
+
+curl "https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getWebhookInfo"
+
+
+## Step 5: Test Your Bot!
+
+Now open Telegram and test your bot:
+
+### Basic Commands:
+1. **Start the bot:**
+/start
+You should get a welcome message!
+
+2. **Test echo:**
+/echo Hello World
+
+3. **Save data:**
+/save myemail test@example.com
+
+4. **Get data:**
+/get myemail
+
+5. **List keys:**
+/list
+
+### Test File Uploads:
+
+6. **Send a photo** - Just send any image to the bot
+7. **Send a document** - Upload any PDF, Word doc, etc.
+8. **Send a voice message** - Record and send a voice note
+
+### Test File Commands:
+
+9. **List your files:**
+/myfiles
+
+10. **Get file info:**
+/fileinfo <file_id>
+(Use a file_id from the /myfiles output)
+
+### Test AI Features (if you set API keys):
+
+11. **Ask AI:**
+/ask What is cloud computing?
+
+12. **Get statistics:**
+/stats

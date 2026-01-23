@@ -1,0 +1,9 @@
+{
+    "TELEGRAM_BOT_TOKEN": "8238388865:AAFWcEhLxYKbxYzqdxYdzsZv0AN5Hc4wzmo",
+    "GEMINI_API_KEY": "AIzaSyBgwzoDZpNE8w4pCoIa0b8gaHRdPt9gHgg",
+    "GROQ_API_KEY": "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",
+    "DDB_TABLE_NAME": "telegram-bot-messages",
+    "OPENAI_API_KEY": "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",
+    "S3_BUCKET_NAME": "telegram-bot-files-v2",
+    "HF_API_KEY": "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"
+}

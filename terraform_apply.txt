@@ -1,0 +1,47 @@
+# Check what's in your state
+terraform state list
+
+# If you see aws_apigatewayv2_stage.prod, remove it
+terraform state rm aws_apigatewayv2_stage.prod
+
+
+# Initialize (in case new providers are needed)
+terraform init
+
+# Plan to see what will change
+terraform plan
+
+# Apply the changes
+terraform apply
+
+
+
+
+
+
+
+data.archive_file.lambda_zip
+aws_apigatewayv2_api.telegram_api
+aws_apigatewayv2_integration.lambda_integration
+aws_apigatewayv2_route.telegram_route
+aws_cloudwatch_log_group.api_gateway_logs
+aws_cloudwatch_metric_alarm.api_4xx_errors[0]
+aws_cloudwatch_metric_alarm.api_5xx_errors[0]
+aws_cloudwatch_metric_alarm.dynamodb_read_throttle[0]
+aws_cloudwatch_metric_alarm.dynamodb_write_throttle[0]
+aws_cloudwatch_metric_alarm.lambda_duration[0]
+aws_cloudwatch_metric_alarm.lambda_errors[0]
+aws_dynamodb_table.telegram_messages
+aws_iam_role.lambda_role
+aws_iam_role_policy.lambda_dynamodb_access
+aws_iam_role_policy.lambda_s3_access
+aws_iam_role_policy_attachment.lambda_basic
+aws_lambda_function.telegram_lambda
+aws_lambda_permission.allow_apigw
+aws_s3_bucket.telegram_files
+aws_s3_bucket_lifecycle_configuration.telegram_files
+aws_s3_bucket_public_access_block.telegram_files
+aws_s3_bucket_server_side_encryption_configuration.telegram_files
+aws_s3_bucket_versioning.telegram_files
+aws_sns_topic.alerts[0]
+aws_sns_topic_subscription.email_alerts[0]

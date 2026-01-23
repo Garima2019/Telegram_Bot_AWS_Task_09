@@ -1,0 +1,103 @@
+cd D:\SRH\Cloud_Solutions\Telegram_Bot_Prod
+create .zip file for new release
+Compress-Archive -Path handler.py -DestinationPath lambda.zip -Force
+terraform init -upgrade
+terraform apply
+
+aws:
+Access key: AKIA4ZHC7ZNW3SJQMVWX
+Secret access key: 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
+region  = "us-east-1"
+ARN:
+arn:aws:iam::878796852077:user/terraform-user
+
+openapi 
+https://platform.openai.com/settings/organization/api-keys
+name : telegram-bot-key
+token:
+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
+
+telegram bot key:
+Bot_Telegram @aws_GDP_bot:
+8238388865:AAFR34rOxX33fosBaQoZe6HapdiaQtW7Kfo
+
+gemini
+https://aistudio.google.com/api-keys
+key: 
+AIzaSyC-mTe9e3lnPY7FAk6l5JGczfysVY4z0SY
+
+dynamodb_table_name = "telegram-user-data"
+lambda_function_name = "telegram-bot-webhook"
+webhook_url = "https://ywio4ylrqj.execute-api.us-east-1.amazonaws.com/prod/webhook"
+
+
+to get Make sure the webhook is pointing to the right URL
+terraform output webhook_url
+
+
+
+
+*********************
+find aws key
+echo $Env:AWS_ACCESS_KEY_ID
+echo $Env:AWS_SECRET_ACCESS_KEY
+
+aws configure list
+aws configure
+
+get aws identity details:
+aws sts get-caller-identity
+
+
+rm .terraform.lock.hcl #remover terraform 
+terraform init -upgrade
+
+Compress-Archive -Path handler.py -DestinationPath lambda.zip -Force
+
+terraform apply -auto-approve
+
+###terraform apply -var="telegram_bot_token=8238388865:AAFR34rOxX33fosBaQoZe6HapdiaQtW7Kfo"
+
+
+if aws is not working user below command to remover aws access form system
+Remove-Item Env:AWS_ACCESS_KEY_ID -ErrorAction SilentlyContinue
+Remove-Item Env:AWS_SECRET_ACCESS_KEY -ErrorAction SilentlyContinue
+Remove-Item Env:AWS_DEFAULT_REGION -ErrorAction SilentlyContinue
+
+
+URI issue
+run uri with below apigateway url
+$URL = "https://1wnxmilq68.execute-api.us-east-1.amazonaws.com/prod/webhook"
+$ENCODED = [System.Uri]::EscapeDataString($URL)
+
+Invoke-RestMethod -Method Get `
+  -Uri "https://api.telegram.org/bot8238388865:AAFR34rOxX33fosBaQoZe6HapdiaQtW7Kfo/setWebhook?url=$ENCODED"
+
+
+Invoke-RestMethod -Method Get `
+  -Uri "https://api.telegram.org/bot8238388865:AAFR34rOxX33fosBaQoZe6HapdiaQtW7Kfo/getWebhookInfo" `
+  | ConvertTo-Json -Depth 10
+
+
+Check what Telegram thinks:
+$TOKEN = "8238388865:AAFR34rOxX33fosBaQoZe6HapdiaQtW7Kfo"
+Invoke-RestMethod -Method Get -Uri "https://api.telegram.org/bot$TOKEN/getWebhookInfo" | ConvertTo-Json -Depth 10
+
+Re-set the webhook (just do it to be sure):
+$TOKEN = "8238388865:AAFR34rOxX33fosBaQoZe6HapdiaQtW7Kfo"
+$WEBHOOK = "https://1wnxmilq68.execute-api.us-east-1.amazonaws.com/prod/webhook"
+Invoke-RestMethod -Method Get -Uri "https://api.telegram.org/bot$TOKEN/setWebhook?url=$WEBHOOK"
+
+Quick manual test of the API (no Telegram yet)
+$URL = "https://1wnxmilq68.execute-api.us-east-1.amazonaws.com/prod/webhook"  # ends with /webhook
+$body = @{
+    update_id = 123456
+    message   = @{
+        message_id = 1
+        chat       = @{ id = 8238388865:AAFR34rOxX33fosBaQoZe6HapdiaQtW7Kfo }
+        text       = "/hello"
+        from       = @{ id = 1; first_name = "Test" }
+    }
+} | ConvertTo-Json -Depth 5
+
+Invoke-RestMethod -Method Post -Uri $URL -ContentType "application/json" -Body $body
