@@ -225,7 +225,7 @@ Expected:
 </a>
 *Alarm automatically recovered after error condition cleared*
 
-### 6. CloudWatch Dashboard (Bonus)
+### 6. CloudWatch Dashboard
 <a href="evidence/Dashboard.png" target="_blank">
   Dashboard
 </a>
@@ -338,10 +338,6 @@ For issues or questions:
 1. Check CloudWatch logs for error details
 2. Review alarm history for patterns
 3. Consult metric dashboards for performance insights
-4. [Open an issue](https://github.com/yourusername/your-repo/issues) with:
-   - Error logs (sanitized)
-   - Alarm screenshots
-   - Steps to reproduce
 
 ---
 
