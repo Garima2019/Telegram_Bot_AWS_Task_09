@@ -196,27 +196,39 @@ Expected:
 ## 📸 Evidence
 
 ### 1. Structured Logs
-![Structured Logs](./evidence-1-structured-logs.png)
+<a href="evidence/Structured_Logs.png" target="_blank">
+  Structured Logs
+</a>
 *CloudWatch log stream showing JSON-formatted logs with consistent fields*
 
 ### 2. Error Logs with Stack Trace
-![Error Logs](./evidence-2-error-logs.png)
+<a href="evidence/Error Logs with Stack Trace.png" target="_blank">
+  Error Logs
+</a>
 *ERROR-level log entry triggered by `/testerror` command*
 
 ### 3. Metric Filter Statistics
-![Metric Filter](./evidence-3-metric-filter-stats.png)
+<a href="evidence/Metric_Filter3.png" target="_blank">
+  Metric Filter
+</a>
 *CloudWatch metrics showing error count over time*
 
 ### 4. Alarm in ALARM State
-![Alarm Triggered](./evidence-4-alarm-in-alarm-state.png)
+<a href="evidence/Alarm_Triggered1.png" target="_blank">
+  Alarm Triggered
+</a>
 *Error alarm triggered after detecting test error*
 
 ### 5. Alarm Returned to OK
-![Alarm Recovered](./evidence-5-alarm-returned-to-ok.png)
+<a href="evidence/Alarm_Triggered2.png" target="_blank">
+  Alarm Recovered
+</a>
 *Alarm automatically recovered after error condition cleared*
 
 ### 6. CloudWatch Dashboard (Bonus)
-![Dashboard](./evidence-6-dashboard.png)
+<a href="evidence/Dashboard.png" target="_blank">
+  Dashboard
+</a>
 *Complete observability dashboard with all metrics*
 
 ---
